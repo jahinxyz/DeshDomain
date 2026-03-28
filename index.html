@@ -3,374 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeshDomain - Register Your Perfect Domain</title>
-    <!-- Font Awesome for Icons -->
+    <title>DeshDomain | Bangladesh's Leading Domain & Hosting Portal 2025</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- CORE THEME & VARIABLES --- */
         :root {
             --primary: #1a1a2e;
-            --primary-hover: #000000;
-            --dark: #111111;
-            --light: #f4f4f5;
-            --gray: #71717a;
-            --border: #e4e4e7;
-            --accent: #3f3f46;
+            --dark: #0f172a;
+            --black-grad: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --accent: #3b82f6;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
         a { text-decoration: none; color: inherit; cursor: pointer; }
         ul { list-style: none; }
 
-        /* --- NAVIGATION (CLEAN, NO LINKS) --- */
+        /* --- NAVIGATION --- */
         nav {
-            background-color: white;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between; /* Logo left, 3-dots right */
-            align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: #fff; padding: 1.2rem 5%; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
         }
+        .logo { font-size: 1.6rem; font-weight: 900; color: var(--dark); display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .logo i { color: #000; font-size: 1.8rem; }
+        .logo span { color: var(--gray); font-weight: 300; }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--dark);
-            letter-spacing: -0.5px;
-            cursor: pointer;
-        }
-        
-        .logo i { color: var(--primary); }
-
-        /* 3-Dots Button */
         .menu-btn {
-            background: var(--light);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
-            padding: 0.5rem 1rem;
-            transition: all 0.2s;
+            background: var(--light); border: 1px solid var(--border); 
+            padding: 0.7rem 1.1rem; border-radius: 8px; cursor: pointer; font-size: 1.4rem;
+            transition: 0.3s;
         }
-        
-        .menu-btn:hover { 
-            background: var(--dark);
-            color: white;
-            transform: scale(1.05); 
-        }
+        .menu-btn:hover { background: var(--dark); color: #fff; }
 
-        /* --- SIDE MENU (WHERE ALL LINKS ARE NOW) --- */
+        /* --- SIDEBAR MENU (THE 3-DOTS MENU) --- */
         .side-menu {
-            position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+            position: fixed; top: 0; right: -100%; width: 320px; height: 100vh;
             background: #fff; z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             padding: 2rem; overflow-y: auto; box-shadow: -10px 0 30px rgba(0,0,0,0.2);
         }
         .side-menu.active { right: 0; }
-        .close-btn { float: right; font-size: 2rem; cursor: pointer; color: var(--gray); margin-bottom: 2rem; }
+        .close-btn { float: right; font-size: 1.8rem; cursor: pointer; color: var(--gray); margin-bottom: 1rem; }
         
-        .side-menu h3 { margin: 2rem 0 1rem; font-size: 1rem; text-transform: uppercase; color: var(--gray); letter-spacing: 1px; width: 100%; border-bottom: 1px solid var(--light); padding-bottom: 5px;}
-        .side-menu ul { list-style: none; width: 100%; }
-        .side-menu ul li { margin-bottom: 0.5rem; }
+        .side-menu h3 { margin: 1.5rem 0 0.5rem; font-size: 0.75rem; text-transform: uppercase; color: var(--gray); border-bottom: 1px solid var(--border); padding-bottom: 5px; letter-spacing: 1px;}
         .side-menu ul li a { 
-            display: flex; align-items: center; gap: 15px; padding: 0.8rem;
-            font-size: 1.1rem; color: var(--dark); border-radius: 8px; transition: 0.2s;
+            display: flex; align-items: center; gap: 12px; padding: 0.7rem;
+            font-size: 1rem; color: var(--dark); border-radius: 8px; transition: 0.2s;
         }
-        .side-menu ul li a:hover { background: var(--light); padding-left: 20px; color: var(--primary); }
+        .side-menu ul li a:hover { background: var(--light); padding-left: 15px; color: var(--accent); }
 
         .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: none; backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
-        
 
         /* --- PAGE SYSTEM --- */
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-            min-height: 70vh;
+        .page { display: none; min-height: 80vh; padding-bottom: 4rem; }
+        .page.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: var(--black-grad); color: #fff; padding: 6rem 5% 5rem; text-align: center;
+            position: relative; overflow: hidden;
         }
-        .page.active { display: block; }
+        .hero::before {
+            content: ''; position: absolute; inset: 0; opacity: 0.1;
+            background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; position: relative; line-height: 1.2; }
+        .hero p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2.5rem; position: relative; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- SEARCH BOX --- */
+        .search-area { max-width: 750px; margin: 0 auto; background: #fff; padding: 0.5rem; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); position: relative; z-index: 10; }
+        .search-area input { border: none; padding: 1.1rem; flex: 1; font-size: 1.1rem; outline: none; border-radius: 8px; color: #000; }
+        .search-area button { background: var(--dark); color: #fff; padding: 1rem 2rem; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .search-area button:hover { background: #000; transform: scale(1.02); }
+
+        /* --- GRID & CARDS --- */
+        .section-title { text-align: center; padding: 4rem 5% 1rem; font-size: 1.8rem; font-weight: 800; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 5%; max-width: 1200px; margin: 0 auto; }
+        @media (min-width: 768px) { 
+            .grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } 
+            .hero h1 { font-size: 4rem; }
+            .search-area { flex-direction: row; }
         }
 
-        /* --- HERO & HEADERS (BLACKISH GRADIENT) --- */
-        .hero, .page-header {
-            background: linear-gradient(135deg, #000000 0%, #16161a 40%, #2b2b36 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-        }
+        .card { background: #fff; border: 1px solid var(--border); padding: 2.5rem 1.5rem; border-radius: 16px; text-align: center; transition: 0.3s; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); border-color: var(--dark); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card i.main-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--dark); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 800; }
+        .card .price { font-size: 2rem; font-weight: 900; color: var(--dark); margin: 0.5rem 0; }
+        .card .price span { font-size: 0.9rem; color: var(--gray); font-weight: 400; }
+        .card ul { text-align: left; margin: 1rem 0 2rem; list-style: none; font-size: 0.9rem; color: var(--gray); flex: 1; }
+        .card ul li { margin-bottom: 8px; }
+        .card ul li i { color: var(--success); margin-right: 8px; }
+        .btn { background: var(--dark); color: #fff; padding: 1rem; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #000; }
 
-        .hero::before, .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            pointer-events: none;
-        }
+        /* --- FEATURES SECTION --- */
+        .features-section { background: #fff; padding: 5rem 5%; text-align: center; border-top: 1px solid var(--border); }
+        .features-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 1200px; margin: 3rem auto 0; }
+        @media (min-width: 768px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+        .feature-item i { font-size: 2.5rem; color: var(--dark); margin-bottom: 1.2rem; }
+        .feature-item h4 { font-size: 1.3rem; margin-bottom: 0.8rem; font-weight: 800; }
+        .feature-item p { color: var(--gray); font-size: 0.95rem; line-height: 1.6; }
 
-        .hero { padding: 7rem 5%; }
-        .page-header { padding: 4rem 5%; }
+        /* --- TABLES --- */
+        .table-container { max-width: 1100px; margin: 2rem auto; padding: 0 5%; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+        th { background: var(--dark); color: #fff; padding: 15px; text-align: left; }
+        td { padding: 12px 15px; border-bottom: 1px solid var(--border); }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; position: relative; z-index: 1; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; color: #a1a1aa; position: relative; z-index: 1; }
-        .page-header h1 { font-size: 2.5rem; position: relative; z-index: 1;}
-
-        /* --- HOME CONTENT --- */
-        .search-box {
-            max-width: 800px; margin: 0 auto; display: flex; background: white;
-            padding: 0.5rem; border-radius: 8px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            position: relative; z-index: 1;
-        }
-        .search-box input { flex: 1; border: none; padding: 1.2rem; font-size: 1.2rem; outline: none; border-radius: 5px 0 0 5px; }
-        .search-box button { background: var(--dark); color: white; border: none; padding: 0 2.5rem; font-size: 1.2rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; }
-        .search-box button:hover { background: #333333; }
-        #search-result { margin-top: 1.5rem; font-size: 1.2rem; font-weight: bold; min-height: 25px; position: relative; z-index: 1;}
-
-        .tlds, .features { padding: 5rem 5%; text-align: center; }
-        .tlds h2, .features h2 { margin-bottom: 3rem; font-size: 2.2rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
-        .card { background: white; padding: 2.5rem 1.5rem; border-radius: 12px; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: var(--dark); }
-        .card i { font-size: 3rem; color: var(--dark); margin-bottom: 1.5rem; background: var(--light); padding: 1.5rem; border-radius: 50%; }
-        .card h3 { font-size: 1.8rem; color: var(--dark); margin-bottom: 0.5rem;}
-        .card p { color: var(--gray); margin-bottom: 1.5rem; }
-        .card .price { font-size: 1.6rem; font-weight: 800; color: var(--dark); }
-
-        /* --- INNER PAGES CONTENT --- */
-        .container { max-width: 1000px; margin: 4rem auto; padding: 0 5%; line-height: 1.7; }
-        .container h2 { margin-bottom: 1.5rem; color: var(--dark); }
-        .container p { margin-bottom: 1rem; color: var(--gray); }
-        
-        /* Form Styling */
-        .form-box { background: white; padding: 3rem; border-radius: 12px; border: 1px solid var(--border); max-width: 500px; margin: 0 auto; }
-        .input-group { margin-bottom: 1.5rem; text-align: left; }
-        .input-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
-        .input-group input, .input-group textarea { width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 6px; outline: none; }
-        .btn-submit { width: 100%; background: var(--dark); color: white; padding: 1rem; border: none; border-radius: 6px; font-size: 1.1rem; cursor: pointer; font-weight: bold;}
-        .btn-submit:hover { background: #333; }
-
-        /* Footer */
-        footer { background: #0a0a0a; color: white; text-align: center; padding: 3rem 5%; }
-        footer .logo { color: white; margin-bottom: 1rem; display: block; }
-        footer p { color: #71717a; margin-top: 1rem; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .search-box { flex-direction: column; background: transparent; box-shadow: none;}
-            .search-box input { border-radius: 6px; margin-bottom: 10px; padding: 18px;}
-            .search-box button { padding: 18px; border-radius: 6px;}
-        }
+        /* --- FOOTER --- */
+        footer { background: #000; color: #fff; padding: 4rem 5%; text-align: center; }
+        footer .logo { justify-content: center; color: #fff; margin-bottom: 1.5rem; }
+        footer .logo i { color: #fff; }
+        footer p { color: #64748b; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-    <!-- OVERLAY FOR SIDE MENU -->
-    <div class="overlay" id="overlay"></div>
+    <div class="overlay" id="overlay" onclick="toggleMenu(false)"></div>
 
-    <!-- UPPER TAB (NO LINKS, ONLY LOGO AND 3 DOTS) -->
+    <!-- NAVBAR -->
     <nav>
         <div class="logo" onclick="switchPage('home')">
-            <i class="fas fa-globe"></i> DeshDomain
+            <i class="fas fa-globe"></i> Desh<span>Domain</span>
         </div>
-        
-        <!-- 3-Dots Menu Button -->
-        <button class="menu-btn" id="menuBtn">
-            <i class="fas fa-ellipsis-v"></i> <!-- Vertical 3 dots icon -->
+        <button class="menu-btn" onclick="toggleMenu(true)">
+            <i class="fas fa-ellipsis-v"></i>
         </button>
     </nav>
 
-    <!-- 3-DOTS SLIDING MENU (ALL OPTIONS ARE HERE) -->
+    <!-- SIDEBAR MENU (EXPANDED) -->
     <div class="side-menu" id="sideMenu">
-        <button class="close-btn" id="closeBtn"><i class="fas fa-times"></i></button>
-        <h3>Menu Options</h3>
+        <span class="close-btn" onclick="toggleMenu(false)">&times;</span>
+        
+        <h3>Services</h3>
         <ul>
-            <!-- Main Options moved from upper tab -->
             <li><a onclick="switchPage('home')"><i class="fas fa-home"></i> Home</a></li>
-            <li><a onclick="switchPage('domains')"><i class="fas fa-search"></i> Domains</a></li>
+            <li><a onclick="switchPage('domains')"><i class="fas fa-globe"></i> Domains</a></li>
             <li><a onclick="switchPage('hosting')"><i class="fas fa-server"></i> Hosting</a></li>
-            <li><a onclick="switchPage('email')"><i class="fas fa-envelope-open-text"></i> Email</a></li>
-            
-            <!-- Login Option -->
-            <li><a onclick="switchPage('login')" style="color: var(--dark); font-weight: 700;"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-            
-            <hr class="menu-divider">
-            
-            <!-- Extra Pages -->
-            <li><a onclick="switchPage('about')"><i class="fas fa-info-circle"></i> About Us</a></li>
-            <li><a onclick="switchPage('contact')"><i class="fas fa-headset"></i> Contact Support</a></li>
-            <li><a onclick="switchPage('faq')"><i class="fas fa-question-circle"></i> FAQ</a></li>
-            <li><a onclick="switchPage('privacy')"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-            <li><a onclick="switchPage('terms')"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
-            <li><a onclick="switchPage('blog')"><i class="fas fa-blog"></i> Company Blog</a></li>
-            <li><a onclick="switchPage('promos')"><i class="fas fa-percent"></i> Promos & Deals</a></li>
+            <li><a onclick="switchPage('email')"><i class="fas fa-envelope"></i> Business Email</a></li>
+        </ul>
+
+        <h3>Tools & Security</h3>
+        <ul>
+            <li><a onclick="switchPage('whois')"><i class="fas fa-search"></i> WHOIS Lookup</a></li>
+            <li><a onclick="switchPage('ssl')"><i class="fas fa-shield-alt"></i> SSL Certificates</a></li>
+            <li><a onclick="switchPage('builder')"><i class="fas fa-magic"></i> Site Builder</a></li>
+        </ul>
+
+        <h3>Account</h3>
+        <ul>
+            <li><a onclick="switchPage('login')"><i class="fas fa-user-circle"></i> Login</a></li>
+            <li><a onclick="switchPage('affiliate')"><i class="fas fa-hand-holding-usd"></i> Affiliate Program</a></li>
+        </ul>
+
+        <h3>Support</h3>
+        <ul>
+            <li><a onclick="switchPage('contact')"><i class="fas fa-headset"></i> Open Ticket</a></li>
+            <li><a onclick="switchPage('faq')"><i class="fas fa-book"></i> Knowledgebase</a></li>
         </ul>
     </div>
 
     <!-- ============================================== -->
-    <!--                  PAGE CONTENTS                 -->
+    <!--                  PAGES SECTION                 -->
     <!-- ============================================== -->
 
-    <!-- 1. HOME PAGE -->
+    <!-- 1. HOME PAGE (RESTORED TO CLASSIC STYLE) -->
     <div id="home" class="page active">
         <header class="hero">
-            <h1>Find Your Perfect Domain Name</h1>
-            <p>Join millions of customers who trust DeshDomain to build their online presence.</p>
-            <div class="search-box">
-                <input type="text" id="domainInput" placeholder="Type the domain you want (e.g., myawesomeidea.com)">
-                <button onclick="searchDomain()">Search Domain</button>
+            <h1>The Name You Want. <br> The Power You Need.</h1>
+            <p>Bangladesh's #1 Destination for 50+ Domain Extensions and NVMe Hosting in 2025.</p>
+            <div class="search-area">
+                <input type="text" id="domainInput" placeholder="Find your perfect domain (e.g. mybrand)">
+                <button onclick="megaSearch()">Search Availability</button>
             </div>
-            <div id="search-result"></div>
+            <div id="search-results" style="margin-top:2rem;"></div>
         </header>
 
-        <section class="tlds">
-            <h2>Popular Domain Extensions</h2>
-            <div class="grid">
-                <div class="card"><h3>.com</h3><p>The standard for business.</p><div class="price">৳999/yr</div></div>
-                <div class="card"><h3>.net</h3><p>Great for tech & networks.</p><div class="price">৳1,199/yr</div></div>
-                <div class="card"><h3>.org</h3><p>Perfect for non-profits.</p><div class="price">৳1,099/yr</div></div>
-                <div class="card"><h3>.io</h3><p>The tech startup favorite.</p><div class="price">৳3,999/yr</div></div>
-            </div>
-        </section>
+        <section class="section-title"><h2>Popular TLDs</h2></section>
+        <div class="grid">
+            <div class="card"><h3>.com</h3><div class="price">৳990<span>/yr</span></div><p>Standard for everyone.</p><button class="btn">Register</button></div>
+            <div class="card"><h3>.com.bd</h3><div class="price">৳2,500<span>/2yrs</span></div><p>Official BD Identity.</p><button class="btn">Register</button></div>
+            <div class="card"><h3>.xyz</h3><div class="price">৳150<span>/yr</span></div><p>For Creative Blogs.</p><button class="btn">Register</button></div>
+        </div>
 
-        <section class="features">
-            <h2>Why Choose DeshDomain?</h2>
-            <div class="grid">
-                <div class="card"><i class="fas fa-lock"></i><h3>Free SSL Certificate</h3><p>Keep your website and customers safe with included SSL security.</p></div>
-                <div class="card"><i class="fas fa-headset"></i><h3>24/7 Expert Support</h3><p>Our award-winning support team is available around the clock.</p></div>
-                <div class="card"><i class="fas fa-server"></i><h3>99.9% Uptime</h3><p>Experience rock-solid reliability with our cloud infrastructure.</p></div>
+        <!-- FEATURES SECTION BELOW HOME -->
+        <section class="features-section">
+            <div class="section-title" style="padding:0;">
+                <h2>Why DeshDomain in 2025?</h2>
+                <p>Advanced infrastructure for the next generation of websites.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-bolt"></i><h4>Instant Setup</h4><p>Get online in seconds with auto-activation systems.</p></div>
+                <div class="feature-item"><i class="fas fa-shield-alt"></i><h4>Free SSL</h4><p>Included with all hosting plans to keep visitors safe.</p></div>
+                <div class="feature-item"><i class="fas fa-clock"></i><h4>99.9% Uptime</h4><p>Tier-4 Data Centers ensuring constant availability.</p></div>
+                <div class="feature-item"><i class="fas fa-headset"></i><h4>24/7 Support</h4><p>Bangla & English support from local experts.</p></div>
+                <div class="feature-item"><i class="fas fa-wallet"></i><h4>Local Pay</h4><p>Supports bKash, Nagad, Rocket, and local cards.</p></div>
+                <div class="feature-item"><i class="fas fa-server"></i><h4>NVMe Storage</h4><p>Up to 10x faster than traditional SSD hosting.</p></div>
             </div>
         </section>
     </div>
 
     <!-- 2. DOMAINS PAGE -->
     <div id="domains" class="page">
-        <header class="page-header">
-            <h1>All Domains Pricing</h1>
-        </header>
-        <div class="container text-center">
-            <h2>Register or Transfer Your Domain</h2>
-            <p>We offer the most competitive rates in Bangladesh. Transfer your existing domain to us for free renewals!</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 2rem;">
-                <tr style="background: var(--dark); color: white; text-align: left;">
-                    <th style="padding: 1rem;">Extension</th><th style="padding: 1rem;">Registration</th><th style="padding: 1rem;">Renewal</th><th style="padding: 1rem;">Transfer</th>
-                </tr>
-                <tr><td style="padding: 1rem; border-bottom: 1px solid var(--border);">.com</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳999</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳1,100</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳999</td></tr>
-                <tr><td style="padding: 1rem; border-bottom: 1px solid var(--border);">.bd</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳1,500 (2 yrs)</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳1,500</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">N/A</td></tr>
-                <tr><td style="padding: 1rem; border-bottom: 1px solid var(--border);">.info</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳499</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳1,200</td><td style="padding: 1rem; border-bottom: 1px solid var(--border);">৳1,000</td></tr>
+        <header class="hero"><h1>Domain Pricing 2025</h1><p>Full catalog of 50+ available domain extensions.</p></header>
+        <div class="table-container">
+            <table id="priceTable">
+                <thead><tr><th>TLD</th><th>Register</th><th>Renew</th><th>Transfer</th></tr></thead>
+                <tbody id="pricing-body"></tbody>
             </table>
         </div>
     </div>
 
     <!-- 3. HOSTING PAGE -->
     <div id="hosting" class="page">
-        <header class="page-header"><h1>Web Hosting Plans</h1></header>
-        <div class="container">
-            <div class="grid">
-                <div class="card text-center">
-                    <h3>Starter</h3><p>For personal blogs</p>
-                    <div class="price">৳150/mo</div><hr style="margin: 1rem 0; border:0; border-top:1px solid var(--border);">
-                    <ul style="text-align: left; margin-bottom: 1rem; line-height: 2;">
-                        <li><i class="fas fa-check text-green"></i> 5 GB SSD Storage</li><li><i class="fas fa-check"></i> 1 Website</li><li><i class="fas fa-check"></i> Free SSL</li>
-                    </ul>
-                    <button class="btn-submit">Buy Now</button>
-                </div>
-                <div class="card text-center" style="border: 2px solid var(--dark);">
-                    <h3>Professional</h3><p>For small businesses</p>
-                    <div class="price">৳300/mo</div><hr style="margin: 1rem 0; border:0; border-top:1px solid var(--border);">
-                    <ul style="text-align: left; margin-bottom: 1rem; line-height: 2;">
-                        <li><i class="fas fa-check"></i> 20 GB NVMe Storage</li><li><i class="fas fa-check"></i> 5 Websites</li><li><i class="fas fa-check"></i> Free Domain</li>
-                    </ul>
-                    <button class="btn-submit">Buy Now</button>
-                </div>
+        <header class="hero"><h1>Cloud Web Hosting</h1><p>Blazing fast performance on 2025 NVMe servers.</p></header>
+        <div class="grid">
+            <div class="card">
+                <h3>Starter NVMe</h3><div class="price">৳1,500<span>/yr</span></div>
+                <ul><li><i class="fas fa-check"></i> 5GB NVMe Storage</li><li><i class="fas fa-check"></i> 1 Website</li><li><i class="fas fa-check"></i> Free SSL</li></ul>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="card">
+                <h3>Business Pro</h3><div class="price">৳3,500<span>/yr</span></div>
+                <ul><li><i class="fas fa-check"></i> 20GB NVMe Storage</li><li><i class="fas fa-check"></i> Unlimited Websites</li><li><i class="fas fa-check"></i> Free .COM Domain</li></ul>
+                <button class="btn">Buy Now</button>
             </div>
         </div>
     </div>
 
     <!-- 4. EMAIL PAGE -->
     <div id="email" class="page">
-        <header class="page-header"><h1>Professional Business Email</h1></header>
-        <div class="container text-center">
-            <h2>Look Professional with you@yourdomain.com</h2>
-            <p>Start sending emails from your own domain starting at just <b>৳50/month</b> per inbox.</p>
+        <header class="hero"><h1>Professional Business Email</h1><p>Solutions from Google, Microsoft, and Zoho.</p></header>
+        <div class="grid">
+            <div class="card"><i class="fab fa-google main-icon" style="color:#4285F4"></i><h3>Google Workspace</h3><div class="price">৳790<span>/mo</span></div><button class="btn">Select Plan</button></div>
+            <div class="card"><i class="fab fa-microsoft main-icon" style="color:#00A4EF"></i><h3>Microsoft 365</h3><div class="price">৳750<span>/mo</span></div><button class="btn">Select Plan</button></div>
+            <div class="card"><i class="fas fa-envelope main-icon" style="color:#F44336"></i><h3>Zoho Mail</h3><div class="price">৳140<span>/mo</span></div><button class="btn">Select Plan</button></div>
         </div>
     </div>
 
-    <!-- 5. LOGIN PAGE -->
+    <!-- 5. WHOIS PAGE -->
+    <div id="whois" class="page">
+        <header class="hero"><h1>WHOIS Lookup</h1><p>Find ownership details for any domain.</p></header>
+        <div style="max-width:500px; margin: 3rem auto; text-align:center; padding: 0 5%;">
+            <input type="text" id="whoisVal" placeholder="google.com" style="width:100%; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:10px; outline: none;">
+            <button class="btn" onclick="mockWhois()">Check Info</button>
+            <pre id="whoisResult" style="margin-top:2rem; text-align:left; background:#eee; padding:15px; display:none; font-size:0.8rem; border-radius: 8px;"></pre>
+        </div>
+    </div>
+
+    <!-- 6. SECURITY / SSL PAGE -->
+    <div id="ssl" class="page">
+        <header class="hero"><h1>SSL Certificates</h1></header>
+        <div class="grid">
+            <div class="card"><h3>Positive SSL</h3><div class="price">৳900<span>/yr</span></div><p>Ideal for personal blogs.</p><button class="btn">Buy Now</button></div>
+            <div class="card"><h3>Enterprise SSL</h3><div class="price">৳9,500<span>/yr</span></div><p>Best for eCommerce sites.</p><button class="btn">Buy Now</button></div>
+        </div>
+    </div>
+
+    <!-- 7. LOGIN PAGE -->
     <div id="login" class="page">
-        <header class="page-header"><h1>Client Login</h1></header>
-        <div class="container text-center">
-            <div class="form-box">
-                <h2 style="margin-bottom: 1.5rem;">Account Login</h2>
-                <div class="input-group"><label>Email Address</label><input type="email" placeholder="Enter your email"></div>
-                <div class="input-group"><label>Password</label><input type="password" placeholder="Enter your password"></div>
-                <button class="btn-submit">Login to Dashboard</button>
-            </div>
+        <header class="hero"><h1>Client Area</h1></header>
+        <div style="max-width:400px; margin: 4rem auto; padding:2.5rem; background:#fff; border-radius:16px; border:1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h2 style="margin-bottom:1.5rem; text-align: center;">Welcome Back</h2>
+            <input type="email" placeholder="Email Address" style="width:100%; padding:12px; margin-bottom:1rem; border:1px solid var(--border); border-radius:8px; outline: none;">
+            <input type="password" placeholder="Password" style="width:100%; padding:12px; margin-bottom:1.5rem; border:1px solid var(--border); border-radius:8px; outline: none;">
+            <button class="btn">Login to Dashboard</button>
         </div>
     </div>
 
-    <!-- 6. ABOUT US PAGE -->
-    <div id="about" class="page">
-        <header class="page-header"><h1>About DeshDomain</h1></header>
-        <div class="container">
-            <h2>Our Mission</h2>
-            <p>Founded in 2023, DeshDomain aims to provide fast, secure, and affordable web services to businesses across Bangladesh and the world.</p>
-            <p>We believe that establishing an online presence should be easy, regardless of technical skill. Our team works tirelessly to ensure 99.9% uptime and lightning-fast loading speeds for your websites.</p>
-        </div>
-    </div>
+    <!-- 8. SIMPLE PAGES (CONTACT, BUILDER, AFFILIATE, FAQ) -->
+    <div id="contact" class="page"><header class="hero"><h1>Contact Support</h1></header><div style="text-align:center; padding:5rem;"><h2>support@deshdomain.com</h2><p>Response time: 15 mins</p></div></div>
+    <div id="builder" class="page"><header class="hero"><h1>Site Builder</h1></header><div style="text-align:center; padding:5rem;"><h2>Drag & Drop Builder coming soon!</h2></div></div>
+    <div id="affiliate" class="page"><header class="hero"><h1>Affiliate Program</h1></header><div style="text-align:center; padding:5rem;"><h2>Earn 20% on every referral!</h2><button class="btn" style="max-width: 250px; margin-top: 1rem;">Join Now</button></div></div>
+    <div id="faq" class="page"><header class="hero"><h1>Knowledgebase</h1></header><div style="text-align:center; padding:5rem;"><h2>How to setup DNS?</h2><p>Link your domain to hosting using our guide.</p></div></div>
 
-    <!-- 7. CONTACT PAGE -->
-    <div id="contact" class="page">
-        <header class="page-header"><h1>Contact Support</h1></header>
-        <div class="container">
-            <div class="form-box">
-                <h2>Send us a message</h2>
-                <div class="input-group"><label>Name</label><input type="text"></div>
-                <div class="input-group"><label>Email</label><input type="email"></div>
-                <div class="input-group"><label>Message</label><textarea rows="4"></textarea></div>
-                <button class="btn-submit">Submit Ticket</button>
-            </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo">
+            <i class="fas fa-globe"></i> DeshDomain
         </div>
-    </div>
+        <p>Your Trusted Digital Partner in Bangladesh since 2025.</p>
+        <p style="margin-top:2rem; opacity:0.5;">&copy; 2025 DeshDomain Inc. All Rights Reserved.</p>
+    </footer>
 
-    <!-- 8. FAQ PAGE -->
-    <div id="faq" class="page">
-        <header class="page-header"><h1>Frequently Asked Questions</h1></header>
-        <div class="container">
-            <h3>Q: How long does domain registration take?</h3>
-            <p>A: Registration is instant! As soon as your payment is confirmed, your domain is live.</p><br>
-            <h3>Q: Do you accept bKash/Nagad?</h3>
-            <p>A: Yes, we accept all local Bangladeshi payment gateways including bKash, Nagad, Rocket, and local bank cards.</p>
-        </div>
-    </div>
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleMenu(isOpen) {
+            document.getElementById('sideMenu').classList.toggle('active', isOpen);
+            document.getElementById('overlay').classList.toggle('active', isOpen);
+        }
 
-    <!-- 9. PRIVACY POLICY PAGE -->
-    <div id="privacy" class="page">
-        <header class="page-header"><h1>Privacy Policy</h1></header>
-        <div class="container">
-            <p>Your privacy is important to us. It is DeshDomain's policy to respect your privacy regarding any information we may collect from you across our website.</p>
-            <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent.</p>
-        </div>
-    </div>
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            toggleMenu(false);
+            window.scrollTo(0, 0);
+        }
 
-    <!-- 10. TERMS OF SERVICE PAGE -->
-    <div id="terms" class="page">
-        <header class="pag
+        const tlds = [
+            { t: ".com", r: "990", ren: "1,150" }, { t: ".net", r: "1,250", ren: "1,350" },
+            { t: ".org", r: "1,100", ren: "1,250" }, { t: ".xyz", r: "150", ren: "1,100" },
+            { t: ".me", r: "950", ren: "1,850" }, { t: ".io", r: "4,500", ren: "4,500" },
+            { t: ".ai", r: "9,800", ren: "9,800" }, { t: ".com.bd", r: "2,500", ren: "1,500" },
+            { t: ".net.bd", r: "2,500", ren: "1,500" }, { t: ".org.bd", r: "2,500", ren: "1,500" }
+        ];
+
+        function populatePricing() {
+            const body = document.getElementById('pricing-body');
+            body.innerHTML = tlds.map(e => `
+                <tr><td><b>${e.t}</b></td><td>৳${e.r}</td><td>৳${e.ren}</td><td>৳${e.r}</td></tr>
+            `).join('');
+        }
+        populatePricing();
+
+        function megaSearch() {
+            const val = document.getElementById('domainInput').value.trim();
+            const res = document.getElementById('search-results');
+            if(!val) return;
+            res.innerHTML = "<p style='color:#fff;'>Checking availability across 50+ registries...</p>";
+            setTimeout(() => {
+                res.innerHTML = `
+                <div style="background:#fff; padding:1.2rem; border-radius:10px; text-align:left; color:#000;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span><b>${val}.com</b> is available!</span><span style="color:var(--success); font-weight:bold;">৳990</span>
+                    </div>
+      
