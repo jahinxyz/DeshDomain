@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeshDomain | Bangladesh's Leading Domain & Hosting 2025</title>
+    <title>DeshDomain | Bangladesh's #1 Domain & Hosting Portal 2025</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -40,7 +40,7 @@
         }
         .menu-btn:hover { background: var(--dark); color: #fff; }
 
-        /* --- SIDEBAR MENU --- */
+        /* --- SIDEBAR MENU (3-DOT MENU) --- */
         .side-menu {
             position: fixed; top: 0; right: -320px; width: 320px; height: 100vh;
             background: #fff; z-index: 9999; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
@@ -118,13 +118,15 @@
 
         /* --- FOOTER --- */
         footer { background: #000; color: #fff; padding: 4rem 5%; text-align: center; }
-        footer .logo { justify-content: center; color: #fff; margin-bottom: 1.5rem; }
-        footer p { color: #64748b; font-size: 0.85rem; }
+        .footer-logo { font-size: 1.8rem; font-weight: 900; color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 1rem; }
+        .footer-logo i { color: #fff; }
+        footer p { color: #64748b; font-size: 0.9rem; max-width: 600px; margin: 0 auto; }
+        .copyright { margin-top: 2rem; opacity: 0.5; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <!-- OVERLAY (CLICK TO CLOSE) -->
+    <!-- OVERLAY -->
     <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
     <!-- NAVBAR -->
@@ -257,24 +259,13 @@
         </div>
     </div>
 
-    <!-- AFFILIATE PAGE -->
-    <div id="affiliate" class="page">
-        <header class="hero"><h1>Affiliate Program</h1><p>Earn 20% commission on every referral!</p></header>
-        <div style="text-align:center; padding:5rem;">
-            <button class="btn" style="max-width: 250px;">Join Program Now</button>
-        </div>
-    </div>
-
-    <!-- CONTACT PAGE -->
-    <div id="contact" class="page"><header class="hero"><h1>Contact Support</h1></header><div style="text-align:center; padding:5rem;"><h2>support@deshdomain.com</h2></div></div>
-
     <!-- FOOTER -->
     <footer>
-        <div class="logo">
+        <div class="footer-logo">
             <i class="fas fa-globe"></i> DeshDomain
         </div>
-        <p>Your Trusted Digital Partner in Bangladesh since 2025.</p>
-        <p style="margin-top:2rem; opacity:0.5;">&copy; 2025 DeshDomain Inc. All Rights Reserved.</p>
+        <p>DeshDomain is Bangladesh's #1 Domain & Hosting Provider. We empower thousands of businesses with high-speed NVMe hosting and global domain registration services.</p>
+        <p class="copyright">&copy; 2025 DeshDomain Inc. All Rights Reserved.</p>
     </footer>
 
     <script>
@@ -306,9 +297,11 @@
 
         function populatePricing() {
             const body = document.getElementById('pricing-body');
-            body.innerHTML = tlds.map(e => `
-                <tr><td><b>${e.t}</b></td><td>৳${e.r}</td><td>৳${e.ren}</td><td>৳${e.r}</td></tr>
-            `).join('');
+            if(body) {
+                body.innerHTML = tlds.map(e => `
+                    <tr><td><b>${e.t}</b></td><td>৳${e.r}</td><td>৳${e.ren}</td><td>৳${e.r}</td></tr>
+                `).join('');
+            }
         }
         populatePricing();
 
@@ -317,7 +310,7 @@
             const val = document.getElementById('domainInput').value.trim();
             const res = document.getElementById('search-results');
             if(!val) return;
-            res.innerHTML = "<p style='color:#fff;'>Checking registries...</p>";
+            res.innerHTML = "<p style='color:#fff;'>Checking availability across 50+ registries...</p>";
             setTimeout(() => {
                 res.innerHTML = `
                 <div style="background:#fff; padding:1.2rem; border-radius:10px; text-align:left; color:#000;">
