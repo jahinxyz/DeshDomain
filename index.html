@@ -58,21 +58,29 @@
         .logo i { color: var(--primary); }
 
         /* 3-Dots Button */
-        .menu-btn {
-            background: var(--light);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
-            padding: 0.5rem 1rem;
-            transition: all 0.2s;
+        .side-menu {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
+            background: #fff; z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            padding: 2rem; overflow-y: auto; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         }
+        .side-menu.active { right: 0; }
+        .close-btn { float: right; font-size: 2rem; cursor: pointer; color: var(--gray); }
         
-        .menu-btn:hover { 
-            background: var(--dark);
-            color: white;
-            transform: scale(1.05); 
+        .side-menu h3 { margin: 2rem 0 1rem; font-size: 1.2rem; text-transform: uppercase; color: var(--gray); letter-spacing: 1px; }
+        .side-menu ul li { margin-bottom: 0.5rem; }
+        .side-menu ul li a { 
+            display: flex; align-items: center; gap: 15px; padding: 0.8rem;
+            font-size: 1.1rem; color: var(--dark); border-radius: 8px; transition: 0.2s;
+        }
+        .side-menu ul li a:hover { background: var(--light); padding-left: 20px; }
+
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; display: none; backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
+
+        /* --- PAGE SYSTEM --- */
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         }
 
         /* --- SIDE MENU (WHERE ALL LINKS ARE NOW) --- */
