@@ -40,7 +40,7 @@
         }
         .menu-btn:hover { background: var(--dark); color: #fff; }
 
-        /* --- SIDEBAR MENU (3-DOT MENU) --- */
+        /* --- SIDEBAR MENU (3-DOTS) --- */
         .side-menu {
             position: fixed; top: 0; right: -320px; width: 320px; height: 100vh;
             background: #fff; z-index: 9999; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
@@ -55,6 +55,13 @@
             font-size: 1rem; color: var(--dark); border-radius: 8px; transition: 0.2s;
         }
         .side-menu ul li a:hover { background: var(--light); padding-left: 15px; color: var(--accent); }
+
+        /* Menu Divider */
+        .menu-divider {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 1.5rem 0 1rem 0;
+        }
 
         .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9998; display: none; backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
@@ -80,7 +87,6 @@
         .search-area { max-width: 750px; margin: 0 auto; background: #fff; padding: 0.5rem; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); position: relative; z-index: 10; }
         .search-area input { border: none; padding: 1.1rem; flex: 1; font-size: 1.1rem; outline: none; border-radius: 8px; color: #000; width: 100%; }
         .search-area button { background: var(--dark); color: #fff; padding: 1rem 2rem; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .search-area button:hover { background: #000; transform: scale(1.02); }
 
         /* --- GRID & CARDS --- */
         .section-title { text-align: center; padding: 4rem 5% 1rem; font-size: 1.8rem; font-weight: 800; }
@@ -96,10 +102,6 @@
         .card i.main-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--dark); }
         .card h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 800; }
         .card .price { font-size: 2rem; font-weight: 900; color: var(--dark); margin: 0.5rem 0; }
-        .card .price span { font-size: 0.9rem; color: var(--gray); font-weight: 400; }
-        .card ul { text-align: left; margin: 1rem 0 2rem; list-style: none; font-size: 0.9rem; color: var(--gray); flex: 1; }
-        .card ul li { margin-bottom: 8px; }
-        .card ul li i { color: var(--success); margin-right: 8px; }
         .btn { background: var(--dark); color: #fff; padding: 1rem; border-radius: 8px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; }
 
         /* --- FEATURES SECTION --- */
@@ -110,23 +112,28 @@
         .feature-item h4 { font-size: 1.3rem; margin-bottom: 0.8rem; font-weight: 800; }
         .feature-item p { color: var(--gray); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- TABLES --- */
-        .table-container { max-width: 1100px; margin: 2rem auto; padding: 0 5%; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-        th { background: var(--dark); color: #fff; padding: 15px; text-align: left; }
-        td { padding: 12px 15px; border-bottom: 1px solid var(--border); }
+        /* --- AUTH (LOGIN/SIGNUP) --- */
+        .auth-container { max-width: 450px; margin: 4rem auto; padding: 2.5rem; background: #fff; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .auth-tabs { display: flex; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .auth-tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; color: var(--gray); transition: 0.3s; }
+        .auth-tab.active { color: var(--dark); border-bottom: 3px solid var(--dark); }
+        .auth-form input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 8px; outline: none; font-size: 1rem; }
+        .auth-msg { font-size: 0.85rem; margin-bottom: 1rem; text-align: center; }
+
+        /* --- CONTENT PAGES STYLING --- */
+        .content-container { max-width: 800px; margin: 4rem auto; padding: 0 2rem; }
+        .content-container h2 { margin-bottom: 1.5rem; font-weight: 800; }
+        .content-container p { margin-bottom: 1.2rem; color: var(--gray); }
 
         /* --- FOOTER --- */
         footer { background: #000; color: #fff; padding: 4rem 5%; text-align: center; }
         .footer-logo { font-size: 1.8rem; font-weight: 900; color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 1rem; }
-        .footer-logo i { color: #fff; }
         footer p { color: #64748b; font-size: 0.9rem; max-width: 600px; margin: 0 auto; }
         .copyright { margin-top: 2rem; opacity: 0.5; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <!-- OVERLAY -->
     <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
     <!-- NAVBAR -->
@@ -151,18 +158,28 @@
             <li><a onclick="switchPage('email')"><i class="fas fa-envelope"></i> Business Email</a></li>
         </ul>
 
-        <h3>Account</h3>
+        <h3>Account & Support</h3>
         <ul>
-            <li><a onclick="switchPage('login')"><i class="fas fa-user-circle"></i> Login</a></li>
-            <li><a onclick="switchPage('affiliate')"><i class="fas fa-hand-holding-usd"></i> Affiliate Program</a></li>
-        </ul>
-
-        <h3>Support</h3>
-        <ul>
+            <li><a onclick="switchPage('login')"><i class="fas fa-user-circle"></i> Login / Sign Up</a></li>
             <li><a onclick="switchPage('whois')"><i class="fas fa-search"></i> WHOIS Lookup</a></li>
             <li><a onclick="switchPage('contact')"><i class="fas fa-headset"></i> Open Ticket</a></li>
         </ul>
+
+        <!-- NEW DIVIDER AND EXTRA PAGES -->
+        <hr class="menu-divider">
+        <h3>Company & Legal</h3>
+        <ul>
+            <li><a onclick="switchPage('about')"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li><a onclick="switchPage('blog')"><i class="fas fa-blog"></i> Company Blog</a></li>
+            <li><a onclick="switchPage('privacy')"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+            <li><a onclick="switchPage('terms')"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+            <li><a onclick="switchPage('faq')"><i class="fas fa-question-circle"></i> FAQ</a></li>
+        </ul>
     </div>
+
+    <!-- ============================================== -->
+    <!--                  PAGES SECTION                 -->
+    <!-- ============================================== -->
 
     <!-- 1. HOME PAGE -->
     <div id="home" class="page active">
@@ -200,134 +217,133 @@
         </section>
     </div>
 
-    <!-- 2. DOMAINS PAGE -->
-    <div id="domains" class="page">
-        <header class="hero"><h1>Domain Pricing 2025</h1><p>Full catalog of 50+ available domain extensions.</p></header>
-        <div class="table-container">
-            <table>
-                <thead><tr><th>TLD</th><th>Register</th><th>Renew</th><th>Transfer</th></tr></thead>
-                <tbody id="pricing-body"></tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- 3. HOSTING PAGE -->
-    <div id="hosting" class="page">
-        <header class="hero"><h1>Cloud Web Hosting</h1><p>Blazing fast performance on 2025 NVMe servers.</p></header>
-        <div class="grid">
-            <div class="card">
-                <h3>Starter NVMe</h3><div class="price">৳1,500<span>/yr</span></div>
-                <ul><li><i class="fas fa-check"></i> 5GB NVMe Storage</li><li><i class="fas fa-check"></i> 1 Website</li><li><i class="fas fa-check"></i> Free SSL</li></ul>
-                <button class="btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>Business Pro</h3><div class="price">৳3,500<span>/yr</span></div>
-                <ul><li><i class="fas fa-check"></i> 20GB NVMe Storage</li><li><i class="fas fa-check"></i> Unlimited Websites</li><li><i class="fas fa-check"></i> Free .COM Domain</li></ul>
-                <button class="btn">Buy Now</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. EMAIL PAGE -->
-    <div id="email" class="page">
-        <header class="hero"><h1>Business Email</h1><p>Solutions from Google, Microsoft, and Zoho.</p></header>
-        <div class="grid">
-            <div class="card"><i class="fab fa-google main-icon" style="color:#4285F4"></i><h3>Google Workspace</h3><div class="price">৳790<span>/mo</span></div><button class="btn">Select Plan</button></div>
-            <div class="card"><i class="fab fa-microsoft main-icon" style="color:#00A4EF"></i><h3>Microsoft 365</h3><div class="price">৳750<span>/mo</span></div><button class="btn">Select Plan</button></div>
-            <div class="card"><i class="fas fa-envelope main-icon" style="color:#F44336"></i><h3>Zoho Mail</h3><div class="price">৳140<span>/mo</span></div><button class="btn">Select Plan</button></div>
-        </div>
-    </div>
-
-    <!-- 5. WHOIS PAGE -->
-    <div id="whois" class="page">
-        <header class="hero"><h1>WHOIS Lookup</h1><p>Find ownership details for any domain.</p></header>
-        <div style="max-width:500px; margin: 3rem auto; text-align:center; padding: 0 5%;">
-            <input type="text" id="whoisVal" placeholder="google.com" style="width:100%; padding:15px; border-radius:8px; border:1px solid #ddd; margin-bottom:10px; outline: none;">
-            <button class="btn" onclick="mockWhois()">Check Info</button>
-            <pre id="whoisResult" style="margin-top:2rem; text-align:left; background:#eee; padding:15px; display:none; font-size:0.8rem; border-radius: 8px;"></pre>
-        </div>
-    </div>
-
-    <!-- 6. LOGIN PAGE -->
+    <!-- 2. LOGIN / SIGNUP PAGE -->
     <div id="login" class="page">
-        <header class="hero"><h1>Client Area</h1></header>
-        <div style="max-width:400px; margin: 4rem auto; padding:2.5rem; background:#fff; border-radius:16px; border:1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-            <h2 style="margin-bottom:1.5rem; text-align: center;">Welcome Back</h2>
-            <input type="email" placeholder="Email Address" style="width:100%; padding:12px; margin-bottom:1rem; border:1px solid var(--border); border-radius:8px; outline: none;">
-            <input type="password" placeholder="Password" style="width:100%; padding:12px; margin-bottom:1.5rem; border:1px solid var(--border); border-radius:8px; outline: none;">
-            <button class="btn">Login to Dashboard</button>
+        <header class="hero"><h1>Client Portal</h1></header>
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login" onclick="toggleAuth('login')">Login</div>
+                <div class="auth-tab" id="tab-signup" onclick="toggleAuth('signup')">Sign Up</div>
+            </div>
+
+            <div id="form-login" class="auth-form">
+                <div class="auth-msg" id="login-msg"></div>
+                <input type="email" id="login-email" placeholder="Email Address">
+                <input type="password" id="login-password" placeholder="Password">
+                <button class="btn" id="btn-login-action">Login to Dashboard</button>
+            </div>
+
+            <div id="form-signup" class="auth-form" style="display: none;">
+                <div class="auth-msg" id="signup-msg"></div>
+                <input type="email" id="signup-email" placeholder="Email Address">
+                <input type="password" id="signup-password" placeholder="Create Password">
+                <input type="password" id="signup-confirm" placeholder="Confirm Password">
+                <button class="btn" id="btn-signup-action">Create Account</button>
+            </div>
         </div>
     </div>
+
+    <!-- EXTRA PAGES CONTENT -->
+    <div id="about" class="page">
+        <header class="hero"><h1>About Us</h1></header>
+        <div class="content-container">
+            <h2>Who We Are</h2>
+            <p>DeshDomain is Bangladesh's leading domain registrar and web hosting provider. Founded with the mission to empower local businesses, we provide world-class digital infrastructure at affordable rates.</p>
+            <p>Our servers are powered by the latest NVMe SSD technology, ensuring that your website loads at lightning-fast speeds for your visitors.</p>
+        </div>
+    </div>
+
+    <div id="blog" class="page">
+        <header class="hero"><h1>Company Blog</h1></header>
+        <div class="content-container">
+            <h2>Latest Updates</h2>
+            <p>Welcome to the DeshDomain blog. Here we share tips on web development, SEO, and how to grow your online business in Bangladesh.</p>
+            <p>Stay tuned for our upcoming articles!</p>
+        </div>
+    </div>
+
+    <div id="privacy" class="page">
+        <header class="hero"><h1>Privacy Policy</h1></header>
+        <div class="content-container">
+            <h2>Your Privacy Matters</h2>
+            <p>At DeshDomain, we are committed to protecting your personal data. This policy outlines how we collect, use, and safeguard your information when you use our services.</p>
+            <p>We do not share your personal information with third parties except as required by law or to provide you with our services.</p>
+        </div>
+    </div>
+
+    <div id="terms" class="page">
+        <header class="hero"><h1>Terms of Service</h1></header>
+        <div class="content-container">
+            <h2>Terms and Conditions</h2>
+            <p>By using DeshDomain's services, you agree to comply with our terms of service. All domains registered and content hosted must comply with local and international laws.</p>
+            <p>We reserve the right to suspend services for accounts involved in spamming, phishing, or illegal activities.</p>
+        </div>
+    </div>
+
+    <div id="faq" class="page">
+        <header class="hero"><h1>FAQ</h1></header>
+        <div class="content-container">
+            <h2>Frequently Asked Questions</h2>
+            <p><b>Q: How long does it take to activate a domain?</b><br>A: Domain registrations are instant upon payment confirmation.</p>
+            <p><b>Q: Do you offer refunds?</b><br>A: We offer a 30-day money-back guarantee on our web hosting plans.</p>
+        </div>
+    </div>
+
+    <!-- OTHER PAGES -->
+    <div id="domains" class="page"><header class="hero"><h1>Domain Pricing</h1></header></div>
+    <div id="hosting" class="page"><header class="hero"><h1>Cloud Hosting</h1></header></div>
+    <div id="email" class="page"><header class="hero"><h1>Business Email</h1></header></div>
+    <div id="whois" class="page"><header class="hero"><h1>WHOIS Lookup</h1></header></div>
+    <div id="contact" class="page"><header class="hero"><h1>Contact Support</h1></header></div>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-logo">
-            <i class="fas fa-globe"></i> DeshDomain
-        </div>
-        <p>DeshDomain is Bangladesh's #1 Domain & Hosting Provider. We empower thousands of businesses with high-speed NVMe hosting and global domain registration services.</p>
+        <div class="footer-logo"><i class="fas fa-globe"></i> DeshDomain</div>
+        <p>DeshDomain is Bangladesh's #1 Domain & Hosting Provider. Empowering businesses with high-speed NVMe hosting and global domain registration.</p>
         <p class="copyright">&copy; 2025 DeshDomain Inc. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // MENU FUNCTIONS
-        function openMenu() {
-            document.getElementById('sideMenu').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
+    <!-- FIREBASE INTEGRATION -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
-        function closeMenu() {
-            document.getElementById('sideMenu').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
+        const firebaseConfig = {
+            apiKey: "AIzaSyB0vnpeHjD4Ym6Z7WrbjKFPtVsmHKPwO-s",
+            authDomain: "deshdomain.firebaseapp.com",
+            databaseURL: "https://deshdomain-default-rtdb.firebaseio.com",
+            projectId: "deshdomain",
+            storageBucket: "deshdomain.firebasestorage.app",
+            messagingSenderId: "250366935613",
+            appId: "1:250366935613:web:0d2d6e22a1fcd703a42054",
+            measurementId: "G-DJDXW9Q40E"
+        };
 
-        // PAGE SWITCHER
-        function switchPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            closeMenu();
-            window.scrollTo(0, 0);
-        }
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-        // DATA POPULATION
-        const tlds = [
-            { t: ".com", r: "990", ren: "1,150" }, { t: ".net", r: "1,250", ren: "1,350" },
-            { t: ".org", r: "1,100", ren: "1,250" }, { t: ".xyz", r: "150", ren: "1,100" },
-            { t: ".com.bd", r: "2,500", ren: "1,500" }, { t: ".net.bd", r: "2,500", ren: "1,500" }
-        ];
+        window.toggleAuth = function(type) {
+            document.getElementById('form-login').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('form-signup').style.display = type === 'signup' ? 'block' : 'none';
+            document.getElementById('tab-login').classList.toggle('active', type === 'login');
+            document.getElementById('tab-signup').classList.toggle('active', type === 'signup');
+        };
 
-        function populatePricing() {
-            const body = document.getElementById('pricing-body');
-            if(body) {
-                body.innerHTML = tlds.map(e => `
-                    <tr><td><b>${e.t}</b></td><td>৳${e.r}</td><td>৳${e.ren}</td><td>৳${e.r}</td></tr>
-                `).join('');
-            }
-        }
-        populatePricing();
+        document.getElementById('btn-signup-action').onclick = async () => {
+            const email = document.getElementById('signup-email').value;
+            const pass = document.getElementById('signup-password').value;
+            const conf = document.getElementById('signup-confirm').value;
+            const msg = document.getElementById('signup-msg');
+            if(pass !== conf) { msg.innerHTML = "<span style='color:red'>Passwords match error</span>"; return; }
+            try {
+                await createUserWithEmailAndPassword(auth, email, pass);
+                msg.innerHTML = "<span style='color:green'>Success! Account Created.</span>";
+            } catch (e) { msg.innerHTML = `<span style='color:red'>${e.message}</span>`; }
+        };
 
-        // MOCK FUNCTIONS
-        function megaSearch() {
-            const val = document.getElementById('domainInput').value.trim();
-            const res = document.getElementById('search-results');
-            if(!val) return;
-            res.innerHTML = "<p style='color:#fff;'>Checking availability across 50+ registries...</p>";
-            setTimeout(() => {
-                res.innerHTML = `
-                <div style="background:#fff; padding:1.2rem; border-radius:10px; text-align:left; color:#000;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span><b>${val}.com</b> is available!</span><span style="color:var(--success); font-weight:bold;">৳990</span>
-                    </div>
-                </div>`;
-            }, 800);
-        }
-
-        function mockWhois() {
-            const domain = document.getElementById('whoisVal').value;
-            const res = document.getElementById('whoisResult');
-            if(!domain) return;
-            res.style.display = 'block';
-            res.innerHTML = `Domain: ${domain.toUpperCase()}\nRegistrar: DeshDomain Inc.\nRegistered: 2025-01-01\nStatus: Active\nNameservers: ns1.deshdomain.com`;
-        }
-    </script>
-</body>
-</html>
+        document.getElementById('btn-login-action').onclick = async () => {
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            const msg = document.getElementById('login-msg');
+            try {
+         
